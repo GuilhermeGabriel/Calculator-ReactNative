@@ -1,5 +1,38 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+
+class Botao extends Component {
+  constructor(props) {
+    super(props)
+
+    let c = 1;
+    if (props.c) {
+      c = parseInt(props.c);
+    }
+
+    this.styles = StyleSheet.create({
+      area: {
+        flex: c,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#999999',
+        backgroundColor: '#E0E0E0'
+      },
+      text: {
+        fontSize: 18
+      }
+    });
+  }
+
+  render() {
+    return (
+      <TouchableOpacity style={this.styles.area}>
+        <Text style={this.styles.text}></Text>
+      </TouchableOpacity>
+    );
+  }
+}
 
 export default class Calculadora extends Component {
   constructor(props) {
@@ -9,7 +42,41 @@ export default class Calculadora extends Component {
   render() {
     return (
       <View style={styles.container} >
-        <Text>Open up App.js to start working on your app!</Text>
+        <View style={styles.linha}>
+          <Text></Text>
+        </View>
+
+        <View style={styles.linha}>
+          <Botao c='3' />
+          <Botao />
+        </View>
+
+        <View style={styles.linha}>
+          <Botao />
+          <Botao />
+          <Botao />
+          <Botao />
+        </View>
+
+        <View style={styles.linha}>
+          <Botao />
+          <Botao />
+          <Botao />
+          <Botao />
+        </View>
+
+        <View style={styles.linha}>
+          <Botao />
+          <Botao />
+          <Botao />
+          <Botao />
+        </View>
+
+        <View style={styles.linha}>
+          <Botao c='2' />
+          <Botao />
+          <Botao />
+        </View>
       </View>
     );
   }
@@ -18,8 +85,10 @@ export default class Calculadora extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'column'
   },
+  linha: {
+    flex: 1,
+    flexDirection: 'row'
+  }
 });
