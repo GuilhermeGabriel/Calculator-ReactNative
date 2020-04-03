@@ -30,7 +30,7 @@ Install packages :
 yarn install
 ```
 
-When installation is complete, run with version of your choice :
+When installation is complete, run with expo :
 
 ```bash
 expo start
