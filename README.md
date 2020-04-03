@@ -11,7 +11,7 @@ More features will be added to the project in the future.
 <img
 		width="210"
 		alt="Capture 1"
-		src="https://github.com/stevenpersia/tinder-react-native/blob/master/preview/capture-1.png">
+		src="https://github.com/GuilhermeGabriel/Calculator-ReactNative/blob/master/screenshots/01.jpg">
 
 ## Installation and usage
 
