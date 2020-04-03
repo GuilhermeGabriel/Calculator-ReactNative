@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, StatusBar } from 'react-native';
 
 class Botao extends Component {
   constructor(props) {
@@ -10,6 +10,11 @@ class Botao extends Component {
       c = parseInt(props.c);
     }
 
+    let bg = '#e0e0e0'
+    if (props.bg) {
+      bg = props.bg
+    }
+
     this.styles = StyleSheet.create({
       area: {
         flex: c,
@@ -17,18 +22,19 @@ class Botao extends Component {
         alignItems: 'center',
         borderWidth: 1,
         borderColor: '#999999',
-        backgroundColor: '#E0E0E0'
+        backgroundColor: bg
       },
       text: {
-        fontSize: 18
+        fontWeight: 'bold',
+        fontSize: 28
       }
     });
   }
 
   render() {
     return (
-      <TouchableOpacity style={this.styles.area}>
-        <Text style={this.styles.text}></Text>
+      <TouchableOpacity style={this.styles.area} onPress={this.props.onPress}>
+        <Text style={this.styles.text}>{this.props.t}</Text>
       </TouchableOpacity>
     );
   }
@@ -37,45 +43,67 @@ class Botao extends Component {
 export default class Calculadora extends Component {
   constructor(props) {
     super(props);
+    this.state = { r: '0' }
+    this.btn = this.btn.bind(this);
+  }
+
+  btn(b) {
+    let s = this.state;
+
+    if (b == 'c') {
+      s.r = '0';
+    } else if (b == '=') {
+      s.r = eval(s.r);
+    } else {
+      if (s.r == '0') {
+        s.r = b
+      } else {
+        s.r += b
+      }
+    }
+
+    this.setState(s);
   }
 
   render() {
     return (
       <View style={styles.container} >
+        <StatusBar barStyle='light-content'></StatusBar>
+
         <View style={styles.linha}>
-          <Text></Text>
+          <Text style={styles.res}>{this.state.r}</Text>
         </View>
 
         <View style={styles.linha}>
-          <Botao c='3' />
-          <Botao />
+          <Botao t='c' c='3' bg='#CCCCCC' onPress={() => { this.btn('c') }} />
+          <Botao t='/' bg='#fd9526' onPress={() => { this.btn('/') }} />
         </View>
 
         <View style={styles.linha}>
-          <Botao />
-          <Botao />
-          <Botao />
-          <Botao />
+          <Botao t='7' onPress={() => { this.btn('7') }} />
+          <Botao t='8' onPress={() => { this.btn('8') }} />
+          <Botao t='9' onPress={() => { this.btn('9') }} />
+          <Botao t='*' bg='#fd9526' onPress={() => { this.btn('*') }} />
         </View>
 
         <View style={styles.linha}>
-          <Botao />
-          <Botao />
-          <Botao />
-          <Botao />
+          <Botao t='4' onPress={() => { this.btn('4') }} />
+          <Botao t='5' onPress={() => { this.btn('5') }} />
+          <Botao t='6' onPress={() => { this.btn('6') }} />
+          <Botao t='-' bg='#fd9526' onPress={() => { this.btn('-') }} />
+        </View>
+        <View style={styles.linha}>
+
+          <Botao t='1' onPress={() => { this.btn('1') }} />
+          <Botao t='2' onPress={() => { this.btn('2') }} />
+          <Botao t='3' onPress={() => { this.btn('3') }} />
+          <Botao t='+' bg='#fd9526' onPress={() => { this.btn('+') }} />
         </View>
 
         <View style={styles.linha}>
-          <Botao />
-          <Botao />
-          <Botao />
-          <Botao />
-        </View>
-
-        <View style={styles.linha}>
-          <Botao c='2' />
-          <Botao />
-          <Botao />
+          <Botao t='0' c='2' onPress={() => { this.btn('0') }} />
+          <Botao t='.' onPress={() => { this.btn('.') }} />
+          <Botao t='=' bg='#fd9526' onPress={() => { this.btn('=') }} />
         </View>
       </View>
     );
@@ -90,5 +118,13 @@ const styles = StyleSheet.create({
   linha: {
     flex: 1,
     flexDirection: 'row'
+  },
+  res: {
+    flex: 1,
+    color: 'white',
+    backgroundColor: 'black',
+    fontSize: 54,
+    textAlign: 'right',
+    padding: 16
   }
 });
