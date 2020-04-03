@@ -1,9 +1,5 @@
 # Calculator - ReactNative
 Simple calculator build in react-native
-
-## Overview
-
-**Started Calculator Project ReactNative** 
 More features will be added to the project in the future.
 
 ## Screenshots
