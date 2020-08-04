@@ -11,12 +11,6 @@ More features will be added to the project in the future.
 
 ## Installation and usage
 
-Be sure, you have installed all dependencies and applications to run React Native project on your computer : [Getting Started with React Native](https://facebook.github.io/react-native/docs/getting-started).
-
-This project works fine for Android but i never tested for IOS version.
-
-### Running the project
-
 Clone this repository :
 
 ```
